@@ -201,5 +201,6 @@ def predict_hill(n_clicks, scholarship_holder):
 
     return ""
 
+
 if __name__ == '__main__':
     app.run_server(host='0.0.0.0',debug=True)
