@@ -41,11 +41,22 @@ data_plots['perc_approved_sem2'] = data_plots['curricular_units_2nd_sem_approved
 data_plots['Target'] = np.where(data_plots['target'] == 'Dropout', 1, 0)
 
 fig1 = px.box(data_plots, x='Target', y='age_at_enrollment', title='Age by Target')
+fig1.update_layout(
+    xaxis_title="Target",
+    yaxis_title="Age at enrollment"
+)
 fig2 = px.box(data_plots, x='Target', y=data_plots['perc_approved_sem2']*100,
               title='Percentage of units approved in the Second Semester by Target (%)')
+fig2.update_layout(
+    xaxis_title="Target",
+    yaxis_title="Units approved (2nd sem) %"
+)
 fig3 = px.box(data_plots, x='debtor', y='perc_approved_sem1',
               title='Percentage of units approved in the First Semester by Debtor (%)')
-
+fig3.update_layout(
+    xaxis_title="Debtor",
+    yaxis_title="Units approved (1st sem) %"
+)
 
 # Unique values for dropdowns
 unique_values = {
@@ -137,6 +148,7 @@ app.layout = dbc.Container([
         ]),
         dbc.Tab(label='Visualizations', children=[
             html.H1("Data Insights"),
+            html.H3("Some visualizations for you to understand the data better"),
             dcc.Graph(id='age-target-plot', figure=fig1),
             dcc.Graph(id='units-approved-target-plot', figure=fig2),
             dcc.Graph(id='units-approved-debtor-plot', figure=fig3)
